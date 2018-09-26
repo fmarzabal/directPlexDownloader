@@ -46,7 +46,7 @@ $dl_url =  $url + "$($xml.MediaContainer.Video.Media.Part.key)" + "?download=1&X
 $filename = Split-Path $($xml.MediaContainer.Video.Media.Part.file) -Leaf
 
 # download
-$myjob = Start-BitsTransfer -Source $dl_url -Destination "$path\$filename" -DisplayName "Downloading ..." -Description $filename -Asynchronous
+$myjob = Start-BitsTransfer -Source $dl_url -Destination "$path\$filename" -DisplayName "Downloading ..." -Description $filename.ToString() -Asynchronous
 
 while ((Get-BitsTransfer | ? { $_.JobState -eq "Transferring" }).Count -gt 0) {     
     $totalbytes=0;    
